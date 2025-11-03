@@ -1,8 +1,15 @@
 import { useState } from 'react';
+import TopMatches from '../components/TopMatches';
 
 function HomePage() {
   const [apiInput, setApiInput] = useState('');
   const [suggestConsolidation, setSuggestConsolidation] = useState(true);
+  const [selectedButtons, setSelectedButtons] = useState([]);
+
+  const tagButtons = [
+    { id: 'nl1', label: 'Python' },
+    { id: 'nl2', label: 'Javascript' }
+  ];
 
   return (
     <div style={{ flex: 1, padding: '2rem' }}>
@@ -47,20 +54,52 @@ function HomePage() {
                 Analyze
               </button>
             </div>
-            <button
-              style={{
-                marginTop: '1rem',
-                background: '#f3f4f6',
-                border: 'none',
-                borderRadius: '6px',
-                padding: '0.5rem 1rem',
-                fontWeight: 'bold',
-                color: '#222',
-                cursor: 'pointer',
-              }}
-            >
-              Natural Language
-            </button>
+            {tagButtons.map(btn => (
+              <button
+                key={btn.id}
+                style={{
+                  marginTop: btn.id === 'nl1' ? '1rem' : '0',
+                  background: selectedButtons.includes(btn.id) ? '#005e5e' : '#cfd8dc',
+                  border: 'none',
+                  borderRadius: '6px',
+                  padding: '0.5rem 1rem',
+                  fontWeight: 'bold',
+                  color: selectedButtons.includes(btn.id) ? '#e0f7fa' : '#222',
+                  cursor: 'pointer',
+                  marginBottom: btn.id === 'nl1' ? '0.75rem' : '0',
+                  boxShadow: selectedButtons.includes(btn.id) ? '0 2px 8px rgba(0,94,94,0.10)' : 'none',
+                  outline: 'none',
+                }}
+                onClick={() => {
+                  setSelectedButtons(prev =>
+                    prev.includes(btn.id) ? prev.filter(b => b !== btn.id) : [...prev, btn.id]
+                  );
+                }}
+              >
+                {btn.label}
+              </button>
+            ))}
+          </section>
+
+          {/* Governance & Consolidation */}
+          <section>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+              <input
+                type="checkbox"
+                checked={suggestConsolidation}
+                onChange={e => setSuggestConsolidation(e.target.checked)}
+                style={{ accentColor: '#2563eb' }}
+              />
+              Suggest consolidation
+            </label>
+            <div style={{
+              background: '#f3f4f6',
+              borderRadius: '8px',
+              padding: '1rem',
+              color: '#222',
+            }}>
+              Consider reusing the <span style={{ fontWeight: 'bold' }}>OAuth Login API</span>
+            </div>
           </section>
 
           {/* Reuse Suggestions */}
@@ -93,77 +132,12 @@ function HomePage() {
             </div>
           </section>
 
-          {/* Governance & Consolidation */}
-          <section>
-            <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>Governance & Consolidation</h2>
-            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
-              <input
-                type="checkbox"
-                checked={suggestConsolidation}
-                onChange={e => setSuggestConsolidation(e.target.checked)}
-                style={{ accentColor: '#2563eb' }}
-              />
-              Suggest consolidation
-            </label>
-            <div style={{
-              background: '#f3f4f6',
-              borderRadius: '8px',
-              padding: '1rem',
-              color: '#222',
-            }}>
-              Consider reusing the <span style={{ fontWeight: 'bold' }}>OAuth Login API</span>
-            </div>
-          </section>
+
         </div>
 
-        {/* Right Panel */}
-        <div>
-          {/* Schema Diff */}
-          <section style={{
-            background: '#fff',
-            border: '1px solid #eee',
-            borderRadius: '8px',
-            padding: '1rem',
-            marginBottom: '2rem',
-          }}>
-            <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1rem' }}>Schema Diff</h2>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '1rem' }}>
-              <thead>
-                <tr>
-                  <th style={{ textAlign: 'left', padding: '0.5rem', color: '#222' }}>User API</th>
-                  <th style={{ textAlign: 'left', padding: '0.5rem', color: '#222' }}>OAuth Login</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style={{ padding: '0.5rem' }}>POST /auth</td>
-                  <td style={{ padding: '0.5rem' }}>POST /auth</td>
-                </tr>
-                <tr>
-                  <td style={{ padding: '0.5rem', color: '#555' }}>request<br />body<br />✓ username<br />✓ password</td>
-                  <td style={{ padding: '0.5rem', color: '#555' }}>request<br />body<br />✓ username<br />✓ password</td>
-                </tr>
-                <tr>
-                  <td style={{ padding: '0.5rem', color: '#555' }}>response<br />object<br /><span style={{ color: '#e11d48' }}>✗ access_token</span></td>
-                  <td style={{ padding: '0.5rem', color: '#555' }}>response<br />object<br /><span style={{ color: '#22c55e' }}>✓ S600</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
-
-          {/* Governance Stream */}
-          <section style={{
-            background: '#fff',
-            border: '1px solid #eee',
-            borderRadius: '8px',
-            padding: '1rem',
-          }}>
-            <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1rem' }}>Governance on Stream</h2>
-            <div style={{ color: '#555' }}>
-              <span style={{ fontWeight: 'bold' }}>GunnaG3</span> stream
-            </div>
-          </section>
-        </div>
+        <aside className="right-col">
+        <TopMatches />
+        </aside>
       </div>
     </div>
   );

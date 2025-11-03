@@ -1,6 +1,6 @@
 export const teamsList = [
   "Billing","Checkout","Mobile","Accounting","Fraud","Web","Admin","Partner",
-  "Warehouse","Analytics","Search","Recommendations","Returns","Support","Integration","Ops"
+  "Warehouse","Analytics"
 ];
 
 export const meaningfulApiNames = [
@@ -8,10 +8,6 @@ export const meaningfulApiNames = [
   "inventory","inventory-sync","shipping","tracking","courier-gateway","auth","identity",
   "session","profile","user-preferences","subscriptions","pricing","discounts","promotions",
   "tax-service","fraud-detection","risk-scoring","notifications","email-service","sms-service",
-  "webhooks","analytics","events","reporting","search","recommendations","catalog","catalog-v2",
-  "media-service","thumbnail","content","cms-sync","returns","refunds","reconciliation",
-  "accounting","ledger","payments-reconcile","integrations-gateway","partner-api","admin-console",
-  "support","ops-monitoring","metrics","logging","feature-flag","scheduler","batch-jobs",
   "supplier","procurement","address-service","geolocation","delivery-optimizer","mobile-sdk","web-frontend"
 ];
 
