@@ -36,3 +36,104 @@
     transform: rotate(360deg);
   }
 }
+
+/* Reporting Page CSS Starts Here */
+
+/* Base */
+.reports-container {
+  padding: 24px;
+  font-family: Inter, Roboto, "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: #1f2937;
+  background: #f8fafc;
+}
+
+/* Header */
+.reports-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+.reports-title { font-size:22px; font-weight:700; color:#0f172a; }
+.reports-subtitle { font-size:13px; color:#6b7280; margin-top:4px; }
+
+/* Layout */
+.panel { display:flex; gap:20px; align-items:flex-start; }
+.left-panel, .right-panel {
+  background:#fff; border-radius:8px; padding:12px; box-shadow:0 6px 20px rgba(15,23,42,0.06);
+}
+.left-panel { flex:1 1 auto; }
+.right-panel { width:300px; }
+
+/* panel heading */
+.panel-heading { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.panel-title { font-size:15px; font-weight:700; }
+.panel-meta { font-size:12px; color:#6b7280; }
+
+/* Heat grid - gridTemplateColumns set inline in React */
+.heat-grid { display:grid; gap:10px; align-items:center; padding-bottom:8px; }
+
+/* API name column */
+.api-name { padding:6px 8px; display:flex; align-items:center; gap:10px; font-weight:600; color:#0f172a; min-height:40px; }
+.api-dot { width:10px; height:10px; border-radius:3px; box-shadow:0 1px 0 rgba(0,0,0,0.05); }
+.api-text { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:160px; }
+
+/* Team headers - more professional */
+.team-header { height:72px; display:flex; justify-content:center; align-items:flex-end; padding-bottom:6px; }
+.team-label {
+  display:inline-block;
+  transform:rotate(-25deg);
+  transform-origin:bottom center;
+  font-size:12px;
+  font-weight:600;
+  color:#334155;
+  letter-spacing:0.2px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:110px;
+  opacity:0.95;
+}
+
+/* Cells */
+.cell {
+  width:44px; height:36px; border-radius:6px;
+  box-shadow:inset 0 -1px 0 rgba(0,0,0,0.03);
+  border:1px solid rgba(15,23,42,0.04);
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; color:#fff; transition:transform 140ms ease, box-shadow 140ms ease;
+}
+.cell.empty { background:#f8fafc; color:#6b7280; }
+.cell.used { box-shadow:0 6px 18px rgba(17,24,39,0.06); transform:translateY(-2px); }
+
+/* Summary column */
+.row-summary { display:flex; flex-direction:column; align-items:flex-end; padding-right:8px; }
+.summary-count { font-weight:700; font-size:13px; color:#0f172a; }
+.summary-bar-outer { background:#eef2ff; border-radius:8px; width:110px; height:10px; margin-top:6px; overflow:hidden; }
+.summary-bar-fill { height:100%; }
+
+/* Overview */
+.overview-title { font-size:15px; font-weight:700; margin-bottom:8px; }
+.overview-item { margin-bottom:8px; }
+.overview-number { font-size:20px; font-weight:800; }
+
+/* Legend */
+.legend { display:flex; gap:8px; margin-top:6px; align-items:center; flex-wrap:wrap; }
+.legend-item { display:flex; gap:6px; align-items:center; }
+.legend-box { width:18px; height:12px; border-radius:4px; }
+
+/* Misc */
+.small { font-size:12px; color:#6b7280; }
+.top-list { margin-top:8px; padding-left:18px; }
+
+/* Tooltip */
+.tooltip {
+  position:fixed; pointer-events:none; z-index:9999;
+  padding:6px 8px; background:#111827; color:#fff; border-radius:6px; font-size:12px;
+}
+
+/* spacer for top-left cell */
+.grid-spacer { height:36px; }
+
+/* responsive tweak */
+@media (max-width: 1100px) {
+  .heat-grid { grid-template-columns: 180px repeat(6, 44px) 120px !important; overflow-x:auto; }
+  .team-label { max-width:80px; font-size:11px; }
+}
+
+/* Reporting Page CSS Ends Here */
