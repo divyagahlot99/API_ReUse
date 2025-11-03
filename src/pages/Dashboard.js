@@ -13,7 +13,7 @@ const menuItems = [
 ];
 
 export default function Dashboard() {
-  const [active, setActive] = useState('Describe');
+  const [active, setActive] = useState('Home');
   const navigate = useNavigate();
 
   return (
