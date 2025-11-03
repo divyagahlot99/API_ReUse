@@ -1,1 +1,1 @@
-Project for API reusability for Hackathon
+Project for API reusability
