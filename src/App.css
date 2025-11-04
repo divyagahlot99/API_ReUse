@@ -137,3 +137,11 @@
 }
 
 /* Reporting Page CSS Ends Here */
+
+/* Global resets - safe to live here so all pages behave consistently */
+html, body, #root { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+/* Make flex children able to shrink to avoid right-column overflow (fixes horizontal overflow with sidebar) */
+.container, .app-root, .App, .main, .market-layout, .panel { min-width: 0; }
+
