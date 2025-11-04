@@ -1,13 +1,7 @@
-import React, { useCallback, useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { setSwagger, computeFromSwagger } from '../store/slices/apiSlice';
 import UploadCard from '../components/UploadCard';
 import ScoreCard from '../components/ScoreCard';
-import TopMatches from '../components/TopMatches';
 
 function UploadPage() {
-  
-
   return (
     <div style={{ flex: 1, padding: '2rem' }}>
       {/* Header */}

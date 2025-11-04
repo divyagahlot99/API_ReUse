@@ -8,7 +8,9 @@ function HomePage() {
 
   const tagButtons = [
     { id: 'nl1', label: 'Python' },
-    { id: 'nl2', label: 'Javascript' }
+    { id: 'nl2', label: 'Javascript' },
+    { id: 'nl3', label: 'C' },
+    { id: 'nl4', label: 'C++' }
   ];
 
   return (
@@ -54,31 +56,33 @@ function HomePage() {
                 Analyze
               </button>
             </div>
-            {tagButtons.map(btn => (
-              <button
-                key={btn.id}
-                style={{
-                  marginTop: btn.id === 'nl1' ? '1rem' : '0',
-                  background: selectedButtons.includes(btn.id) ? '#005e5e' : '#cfd8dc',
-                  border: 'none',
-                  borderRadius: '6px',
-                  padding: '0.5rem 1rem',
-                  fontWeight: 'bold',
-                  color: selectedButtons.includes(btn.id) ? '#e0f7fa' : '#222',
-                  cursor: 'pointer',
-                  marginBottom: btn.id === 'nl1' ? '0.75rem' : '0',
-                  boxShadow: selectedButtons.includes(btn.id) ? '0 2px 8px rgba(0,94,94,0.10)' : 'none',
-                  outline: 'none',
-                }}
-                onClick={() => {
-                  setSelectedButtons(prev =>
-                    prev.includes(btn.id) ? prev.filter(b => b !== btn.id) : [...prev, btn.id]
-                  );
-                }}
-              >
-                {btn.label}
-              </button>
-            ))}
+            <div style={{ display: 'flex', gap: '0.3rem', marginTop: '1rem' }}>
+              {tagButtons.map((btn, idx) => (
+                <button
+                  key={btn.id}
+                  style={{
+                    background: selectedButtons.includes(btn.id) ? '#005e5e' : '#cfd8dc',
+                    border: 'none',
+                    borderRadius: '8px',
+                    padding: '0.25rem 0.7rem',
+                    fontWeight: 'bold',
+                    color: selectedButtons.includes(btn.id) ? '#e0f7fa' : '#222',
+                    cursor: 'pointer',
+                    boxShadow: selectedButtons.includes(btn.id) ? '0 2px 8px rgba(0,94,94,0.10)' : 'none',
+                    outline: 'none',
+                    fontSize: '0.85rem',
+                    transition: 'background 0.2s',
+                  }}
+                  onClick={() => {
+                    setSelectedButtons(prev =>
+                      prev.includes(btn.id) ? prev.filter(b => b !== btn.id) : [...prev, btn.id]
+                    );
+                  }}
+                >
+                  {btn.label}
+                </button>
+              ))}
+            </div>
           </section>
 
           {/* Governance & Consolidation */}
