@@ -1,7 +1,5 @@
-/* Describe Page CSS starts here */
-
-/* Marketplace / neumorphic styles */
-:root{
+/* Replace global :root with scoped .market-root to avoid leaking styles */
+.market-root {
   --bg-1: rgba(255,255,255,0.76);
   --bg-2: rgba(245,249,255,0.72);
   --muted: #64748b;
@@ -11,29 +9,26 @@
   --card-shadow: 10px 12px 30px rgba(15,23,42,0.06), -6px -6px 20px rgba(255,255,255,0.8);
   --card-hover-shadow: 18px 20px 44px rgba(15,23,42,0.10);
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-}
-
-.market-root{
   min-height:100vh;
   background: linear-gradient(180deg, rgba(250,252,255,0.9), rgba(240,245,250,0.9));
   color:var(--text);
   padding-bottom:48px;
 }
 
-/* header */
-.market-header{
+/* scope header & layout under .market-root so other pages are unaffected */
+.market-root .market-header{
   display:flex;
   align-items:center;
   gap:12px;
   padding:24px 24px;
 }
-.market-title{ font-size:20px; font-weight:700; color:var(--text); }
-.market-sub{ color:var(--muted); font-size:13px; margin-top:4px; }
-.market-count{ margin-left:auto; color:var(--muted); font-size:13px; }
+.market-root .market-title{ font-size:20px; font-weight:700; color:var(--text); }
+.market-root .market-sub{ color:var(--muted); font-size:13px; margin-top:4px; }
+.market-root .market-count{ margin-left:auto; color:var(--muted); font-size:13px; }
 
 /* layout */
-.market-layout{ display:flex; gap:24px; padding:0 24px; align-items:flex-start; }
-.left-panel{
+.market-root .market-layout{ display:flex; gap:24px; padding:0 24px; align-items:flex-start; }
+.market-root .left-panel{
   position:sticky;
   top:88px;
   width:300px;
@@ -43,12 +38,12 @@
   backdrop-filter: blur(6px);
   box-shadow: 8px 8px 24px rgba(15,23,42,0.06), -8px -8px 24px rgba(255,255,255,0.7);
 }
-.right-panel{ flex:1; margin-left:12px; padding-top:24px; }
+.market-root .right-panel{ flex:1; margin-left:12px; padding-top:24px; }
 
 /* controls */
-.panel-section{ margin-bottom:14px; }
-.label{ display:block; font-size:12px; color:#334155; margin-bottom:8px; font-weight:600; }
-.select, .input, .search-input{
+.market-root .panel-section{ margin-bottom:14px; }
+.market-root .label{ display:block; font-size:12px; color:#334155; margin-bottom:8px; font-weight:600; }
+.market-root .select, .market-root .input, .market-root .search-input{
   width:100%;
   padding:10px 12px;
   border-radius:12px;
@@ -59,11 +54,11 @@
   font-size:14px;
   color:var(--text);
 }
-.search-input{ padding:11px 14px; }
+.market-root .search-input{ padding:11px 14px; }
 
 /* tags */
-.tags-grid{ display:flex; flex-wrap:wrap; gap:8px; max-height:160px; overflow:auto; padding-right:4px; }
-.tag-chip{
+.market-root .tags-grid{ display:flex; flex-wrap:wrap; gap:8px; max-height:160px; overflow:auto; padding-right:4px; }
+.market-root .tag-chip{
   padding:6px 10px;
   border-radius:999px;
   font-size:12px;
@@ -73,7 +68,7 @@
   transition: all .12s ease;
   border: 1px solid transparent;
 }
-.tag-chip.selected{
+.market-root .tag-chip.selected{
   background: linear-gradient(180deg, rgba(59,130,246,0.14), rgba(59,130,246,0.08));
   color:#0445a6;
   box-shadow: 0 2px 10px rgba(59,130,246,0.08);
@@ -81,25 +76,25 @@
 }
 
 /* buttons */
-.panel-actions{ display:flex; gap:8px; }
-.btn{ padding:9px 12px; border-radius:12px; cursor:pointer; border:none; font-weight:600; }
-.btn-primary{ background: linear-gradient(180deg,var(--accent), #1e40af); color:#fff; box-shadow: 4px 6px 18px rgba(37,99,235,0.12); }
-.btn-ghost{ background: transparent; border:1px solid rgba(15,23,42,0.06); color:var(--text); }
+.market-root .panel-actions{ display:flex; gap:8px; align-items:center; }
+.market-root .btn{ padding:9px 12px; border-radius:12px; cursor:pointer; border:none; font-weight:600; height:40px; display:inline-flex; align-items:center; justify-content:center; }
+.market-root .btn-primary{ background: linear-gradient(180deg,var(--accent), #1e40af); color:#fff; box-shadow: 4px 6px 18px rgba(37,99,235,0.12); }
+.market-root .btn-ghost{ background: transparent; border:1px solid rgba(15,23,42,0.06); color:var(--text); }
 
 /* results header */
-.count-row{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; color:#334155; }
-.count-text{ font-size:15px; }
-.page-info{ color:var(--muted); font-size:13px; }
+.market-root .count-row{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; color:#334155; }
+.market-root .count-text{ font-size:15px; }
+.market-root .page-info{ color:var(--muted); font-size:13px; }
 
 /* grid & cards */
-.grid{
+.market-root .grid{
   display:grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap:20px;
 }
-@media (min-width:1100px){ .grid{ grid-template-columns: repeat(3, 1fr); } }
+@media (min-width:1100px){ .market-root .grid{ grid-template-columns: repeat(3, 1fr); } }
 
-.api-card{
+.market-root .api-card{
   border-radius:14px;
   padding:16px;
   background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
@@ -110,98 +105,89 @@
   gap:12px;
   min-height:160px;
 }
-.api-card:hover{ transform: translateY(-6px); box-shadow: var(--card-hover-shadow); }
+.market-root .api-card:hover{ transform: translateY(-6px); box-shadow: var(--card-hover-shadow); }
 
-.card-title{ display:flex; align-items:center; justify-content:space-between; }
-.title-left{ display:flex; gap:8px; align-items:baseline; }
-.title-text{ font-weight:700; color:var(--text); font-size:16px; }
-.version-chip{ background: rgba(2,6,23,0.06); padding:6px 8px; border-radius:10px; font-size:12px; color:var(--text); }
+/* card content scoping */
+.market-root .card-title{ display:flex; align-items:center; justify-content:space-between; }
+.market-root .title-left{ display:flex; gap:8px; align-items:baseline; }
+.market-root .title-text{ font-weight:700; color:var(--text); font-size:16px; }
+.market-root .version-chip{ background: rgba(2,6,23,0.06); padding:6px 8px; border-radius:10px; font-size:12px; color:var(--text); }
 
-.card-desc{ color:#334155; font-size:13px; min-height:40px; overflow:hidden; }
+.market-root .card-desc{ color:#334155; font-size:13px; min-height:40px; overflow:hidden; }
 
-.pills{ display:flex; gap:8px; flex-wrap:wrap; }
-.pill{ font-size:12px; padding:6px 8px; border-radius:999px; background: rgba(2,6,23,0.04); color:var(--text); }
+.market-root .pills{ display:flex; gap:8px; flex-wrap:wrap; }
+.market-root .pill{ font-size:12px; padding:6px 8px; border-radius:999px; background: rgba(2,6,23,0.04); color:var(--text); }
 
-/* footer row */
-.card-footer{ display:flex; gap:10px; justify-content:space-between; align-items:center; margin-top:auto; color:var(--text); font-size:13px; }
-.footer-left{ display:flex; gap:10px; align-items:center; }
-.lang-badge{ padding:6px 8px; border-radius:10px; background: rgba(15,23,42,0.06); font-weight:600; }
-.method{ font-weight:700; color:var(--text); }
-.endpoint{ color:#475569; font-size:12px; background: rgba(15,23,42,0.03); padding:6px 8px; border-radius:8px; }
+.market-root .card-footer{ display:flex; gap:10px; justify-content:space-between; align-items:center; margin-top:auto; color:var(--text); font-size:13px; }
+.market-root .footer-left{ display:flex; gap:10px; align-items:center; }
+.market-root .lang-badge{ padding:6px 8px; border-radius:10px; background: rgba(15,23,42,0.06); font-weight:600; }
+.market-root .method{ font-weight:700; color:var(--text); }
+.market-root .endpoint{ color:#475569; font-size:12px; background: rgba(15,23,42,0.03); padding:6px 8px; border-radius:8px; }
 
-/* pagination */
-.pagination{ display:flex; gap:8px; align-items:center; justify-content:center; margin-top:18px; }
-.page-btn{ padding:8px 10px; border-radius:8px; background:transparent; border:1px solid rgba(15,23,42,0.05); cursor:pointer; }
-.page-summary{ padding:6px 10px; color:#334155; }
+.market-root .pagination{ display:flex; gap:8px; align-items:center; justify-content:center; margin-top:18px; flex-wrap:wrap; }
+.market-root .page-btn{ padding:8px 10px; border-radius:8px; background:transparent; border:1px solid rgba(15,23,42,0.05); cursor:pointer; }
+.market-root .page-summary{ padding:6px 10px; color:#334155; }
 
-/* small utilities */
-.muted{ color:var(--muted); font-size:13px; }
+.market-root .muted{ color:var(--muted); font-size:13px; }
 
 /* responsive adjustments */
 @media (max-width:900px){
-  .market-layout{ flex-direction:column; padding:12px; }
-  .left-panel{ position:static; width:100%; margin-bottom:12px; }
-  .right-panel{ margin-left:0; padding-top:12px; }
-  .market-header{ padding:18px; }
+  .market-root .market-layout{ flex-direction:column; padding:12px; }
+  .market-root .left-panel{ position:static; width:100%; margin-bottom:12px; }
+  .market-root .right-panel{ margin-left:0; padding-top:12px; }
+  .market-root .market-header{ padding:18px; }
 }
+
 
 /* ...existing code... */
 
-/* Add/replace these rules (keeps previous styles) */
-
-/* make sizing predictable */
-html,body,#root { box-sizing: border-box; }
-*, *::before, *::after { box-sizing: inherit; }
-
-/* Prevent layout overflow when there's an external sidebar */
-.market-layout {
-  gap: 24px;
-  padding: 0 24px;
-  align-items: flex-start;
-  /* ensure children can't push page wider than viewport */
+/* Prevent right-panel/grid overflow — scoped only to Describe page */
+.market-root .market-layout {
   width: 100%;
+  box-sizing: border-box;
+  /* ensure layout doesn't exceed viewport when other global sidebars exist */
   max-width: 100%;
   overflow-x: hidden;
 }
 
-/* constrain left panel and ensure it doesn't enlarge the layout */
-.left-panel {
-  width: 300px;
-  max-width: 28vw;
+/* Make left-panel fixed width but allow right-panel to shrink properly */
+.market-root .left-panel {
+  flex: 0 0 300px; /* fixed width */
+  max-width: 300px;
   min-width: 220px;
   box-sizing: border-box;
 }
 
-/* right panel must not create horizontal scroll */
-.right-panel {
+.market-root .right-panel {
   flex: 1 1 auto;
-  min-width: 0; /* allow flex child to shrink and prevent overflow */
-  overflow-x: hidden;
+  min-width: 0; /* allow flex child to shrink and avoid overflow */
+  overflow-x: hidden; /* hide any accidental horizontal overflow */
 }
 
-/* grid should wrap safely and not overflow container */
-.grid {
-  width: 100%;
-  box-sizing: border-box;
-  min-width: 0; /* important to allow children to shrink inside flex container */
-}
-
-/* consistent buttons: same height + vertical alignment */
-.panel-actions { display:flex; gap:8px; align-items:center; }
-.btn {
-  height: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  padding: 0 14px; /* use fixed height + horizontal padding */
+/* Ensure grid and cards respect parent's min-width and don't force horizontal scroll */
+.market-root .grid,
+.market-root .api-card {
+  min-width: 0;
   box-sizing: border-box;
 }
 
-/* ensure cards respect parent width */
-.api-card { box-sizing: border-box; }
+/* Make card content wrap instead of expanding the card */
+.market-root .title-text,
+.market-root .card-desc,
+.market-root .endpoint {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
 
-/* optional: small tweak for the pagination row to avoid overflow */
-.pagination { flex-wrap:wrap; gap:8px; justify-content:flex-start; }
+/* On very wide layouts keep a right max padding so cards never escape visible area */
+@media (min-width:1200px) {
+  .market-root .right-panel { padding-right: 24px; }
+}
 
-/* Describe Page CSS ends here */
+/* keep small-screen behavior intact */
+@media (max-width:900px) {
+  .market-root .left-panel { position:static; width:100%; margin-bottom:12px; }
+  .market-root .right-panel { margin-left:0; padding-top:12px; overflow-x: visible; }
+}
+
+/* ...existing code... */
